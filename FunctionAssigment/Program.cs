@@ -1,59 +1,84 @@
-﻿namespace FunctionAssigment
+﻿using System.Xml.Linq;
+
+namespace FunctionAssigment
 {
     internal class Program
     {
-        static void Main(string[] args)
+        // Kysyy nimeä
+        static string askName()
         {
-            // Everything is intentionally inside Main before refactoring to functions
-            //Your job is to refactor this code to use functions for better readability and reusability.
-            //Check learn on how to do this
-
-            string name = "";
-            int age = 0;
-            bool valid = false;
-
-            // Ask for name and ensure it is not empty
-            while (!valid)
+            while (true)
             {
                 Console.Write("Enter your name: ");
-                name = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(name))
-                    valid = true;
+                string? input = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(input))
+                    return input.Trim();
                 else
                     Console.WriteLine("Name cannot be empty.");
             }
-
-            // Ask for age and ensure it is a positive integer
-            valid = false;
-            while (!valid)
+        }
+        // Kysyy ikää
+        static int askAge()
+        {
+            while (true)
             {
                 Console.Write("Enter your age: ");
                 string input = Console.ReadLine();
-                if (int.TryParse(input, out age) && age > 0)
-                    valid = true;
-                else
-                    Console.WriteLine("Please enter a positive integer.");
+                if (int.TryParse(input, out int age) && age > 0)
+                    return age;
+
+                Console.WriteLine("Please enter a positive integer.");
+            }
+        }
+        // Printaa nimen ja iän
+        static void printNameAndAge(string name, int age)
+        {
+            Console.WriteLine($"Your name is {name} and your age is {age}.");
+        }
+        // Tarkistaa onko täysi-ikäinen
+        static bool checkAge(int age)
+        {
+            //Here we return the result of comparison directly
+            return age >= 18;
+        }
+        // Vertaa nimeä toiseen nimeen
+        static void compareName(string name, string compareTo)
+        {
+            // case-insensitive (suositeltu: equals + stringcomparison)
+            if (name.Equals(compareTo, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine($"Your name matches '{compareTo}' (case-insensitive).");
             }
 
-            // Print name and age
-            Console.WriteLine($"Your name is {name} and your age is {age}.");
+            // case-sensitive tarkka vertailu
+            if (name.Equals(compareTo))
+            {
+                Console.WriteLine($"Your name is exactly '{compareTo}' (case-sensitive).");
+            }
+        }
 
-            // Check if the user is an adult
-            if (age >= 18)
+        static void Main(string[] args)
+        {
+            // selkeä ja luettava "orkestrointi":
+            string name = askName();
+            int age = askAge();
+
+            printNameAndAge(name, age);
+            bool isFullAge = checkAge(age);
+            if (isFullAge)
+            {
                 Console.WriteLine("You are an adult.");
+            }
             else
+            {
                 Console.WriteLine("You are not an adult.");
+            }
 
-            // Compare the name to another string (e.g., "Matti")
-            string compareName = "Matti";
+            compareName(name, "Matti");
 
-            // Comparison ignoring case
-            if (name.Equals(compareName, StringComparison.OrdinalIgnoreCase))
-                Console.WriteLine("Your name matches 'Matti' (case-insensitive).");
 
-            // Exact match comparison (case-sensitive)
-            if (name.Equals(compareName))
-                Console.WriteLine("Your name is exactly 'Matti' (case-sensitive).");
+
+
         }
     }
 }
