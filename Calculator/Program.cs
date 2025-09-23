@@ -11,7 +11,7 @@
             int erotus = luku1 - luku2;
             int tulo = luku1 * luku2;
             int jako = luku1 / luku2;
-            // Tulostaa laskutoimituksen ja vastauksen
+            // Tulostaa laskutoimituksen ja vastauksen.
             while (true)
             {
                 if (laskutoimitus == "+")
@@ -37,7 +37,7 @@
             }
             
         }
-        // Kysyy käyttäjältä laskutoimituksen
+        // Kysyy käyttäjältä laskutoimituksen.
         static string Kysylaskutoimitus()
 
         {
@@ -52,7 +52,7 @@
                     Console.WriteLine("Virheellinen syöte. Valitse joku seuraavista: +, -, *, /.");
             }
         }
-        // Kysyy käyttäjältä ensimmäisen luvun
+        // Kysyy käyttäjältä ensimmäisen luvun.
         static int Kysyensimmainenluku()
         {
 
@@ -67,7 +67,7 @@
             }
 
         }
-        // Kysyy käyttäjältä toisen luvun
+        // Kysyy käyttäjältä toisen luvun.
         static int Kysytoinenluku()
         {
 

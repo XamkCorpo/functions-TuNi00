@@ -59,7 +59,7 @@ namespace FunctionAssigment
 
         static void Main(string[] args)
         {
-            // selkeä,luettava "orkestrointi":
+            // selkeä ja luettava "orkestrointi":
             string name = askName();
             int age = askAge();
 
